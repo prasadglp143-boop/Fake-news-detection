@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Fake News Detection System</title>
+
+    <style>
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f2f4f7;
+            margin: 0;
+            padding: 40px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: auto;
+            background: white;
+            padding: 35px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px #ccc;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 5px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        .cards {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+
+        .card {
+            flex: 1;
+            padding: 20px;
+            text-align: center;
+            border-radius: 10px;
+            background: #f5f5f5;
+        }
+
+        .card h2 {
+            margin: 5px;
+        }
+
+        .card p {
+            font-size: 16px;
+        }
+
+        .performance {
+            text-align: center;
+            margin: 30px 0;
+        }
+
+        .metrics {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .metric {
+            padding: 15px 25px;
+            background: #eeeeee;
+            border-radius: 8px;
+        }
+
+        textarea {
+            width: 100%;
+            height: 200px;
+            padding: 15px;
+            box-sizing: border-box;
+            font-size: 16px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            display: block;
+            margin: 20px auto;
+            padding: 12px 35px;
+            font-size: 17px;
+            cursor: pointer;
+            border: none;
+            border-radius: 8px;
+            background: #333;
+            color: white;
+        }
+
+        .result {
+            text-align: center;
+            font-size: 25px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        .best-model {
+            text-align: center;
+            font-size: 20px;
+            font-weight: bold;
+            margin: 20px;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>Fake News Detection System</h1>
+
+    <div class="subtitle">
+        Using Machine Learning and Natural Language Processing
+    </div>
+
+
+    <!-- Dataset Statistics -->
+
+    <div class="cards">
+
+        <div class="card">
+            <h2>{{ total_news }}</h2>
+            <p>Total News</p>
+        </div>
+
+        <div class="card">
+            <h2>{{ real_news }}</h2>
+            <p>Real News</p>
+        </div>
+
+        <div class="card">
+            <h2>{{ fake_news }}</h2>
+            <p>Fake News</p>
+        </div>
+
+    </div>
+
+
+    <!-- Model Performance -->
+
+    <div class="performance">
+
+        <h2>Model Evaluation</h2>
+
+        <div class="metrics">
+
+            <div class="metric">
+                <b>Accuracy</b>
+                <br>
+                {{ accuracy }}%
+            </div>
+
+            <div class="metric">
+                <b>Precision</b>
+                <br>
+                {{ precision }}%
+            </div>
+
+            <div class="metric">
+                <b>Recall</b>
+                <br>
+                {{ recall }}%
+            </div>
+
+            <div class="metric">
+                <b>F1-Score</b>
+                <br>
+                {{ f1 }}%
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="best-model">
+        Best Model: {{ best_model }}
+    </div>
+
+    <p style="text-align:center;color:#666;font-size:13px;">
+        Metrics are measured on a held-out dataset split. Predictions identify patterns learned from training data; they do not independently verify facts.
+    </p>
+
+
+    <!-- Prediction -->
+
+    <h2>Enter News Article</h2>
+
+    <form method="POST">
+
+        <textarea
+            name="news"
+            placeholder="Enter news article here..."
+            required>{{ news }}</textarea>
+
+        <button type="submit">
+            Predict
+        </button>
+
+    </form>
+
+
+    {% if prediction %}
+    <div class="result">Result: {{ prediction }}</div>
+    {% endif %}
+
+    {% if error %}
+    <div class="result" style="color:#b00020;font-size:17px;">{{ error }}</div>
+    {% endif %}
+
+
+</div>
+
+</body>
+
+</html>
